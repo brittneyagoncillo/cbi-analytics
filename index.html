@@ -1,358 +1,1027 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>CBI Analytics | Brittney Agoncillo</title>
-
-  <link rel="stylesheet" href="style.css" />
-
+  <title>CBI Analytics | Clarity in Every Decision</title>
+  <meta name="description" content="CBI Analytics is a data-driven operations consulting firm helping cannabis retailers build the systems behind predictable revenue, scalable teams, and premium customer experiences." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    :root {
+      --ink: #ffffff;
+      --muted: rgba(255, 255, 255, 0.68);
+      --soft: rgba(255, 255, 255, 0.48);
+      --navy: #06152f;
+      --navy-2: #0c2240;
+      --blue: #476fd6;
+      --teal: #40c1c8;
+      --glass: rgba(255, 255, 255, 0.075);
+      --glass-strong: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.14);
+      --shadow: 0 30px 100px rgba(0, 0, 0, 0.42);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(64, 193, 200, 0.20), transparent 28%),
+        radial-gradient(circle at 82% 3%, rgba(71, 111, 214, 0.28), transparent 34%),
+        radial-gradient(circle at 50% 90%, rgba(64, 193, 200, 0.10), transparent 35%),
+        linear-gradient(135deg, #030817 0%, #071833 44%, #0c2240 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.045) 44%, transparent 72%);
+      mix-blend-mode: screen;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .orb {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      filter: blur(20px);
+      opacity: 0.18;
+      pointer-events: none;
+      animation: float 9s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .orb.one {
+      top: 10%;
+      left: -160px;
+      background: var(--teal);
+    }
+
+    .orb.two {
+      right: -180px;
+      bottom: 12%;
+      background: var(--blue);
+      animation-delay: -3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(26px, -32px, 0) scale(1.08); }
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(22px);
+      background: rgba(3, 8, 23, 0.56);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(145deg, rgba(64, 193, 200, 0.95), rgba(71, 111, 214, 0.92));
+      box-shadow: 0 14px 36px rgba(64, 193, 200, 0.24);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 11px 16px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 88px 22px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+      min-height: calc(100vh - 78px);
+      padding-top: 56px;
+      padding-bottom: 72px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.055);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.78);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--teal);
+      box-shadow: 0 0 0 8px rgba(64,193,200,0.10);
+    }
+
+    h1 {
+      max-width: 880px;
+      font-size: clamp(48px, 8vw, 94px);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      display: block;
+      background: linear-gradient(90deg, #ffffff 0%, #b9f8ff 52%, #9eb4ff 100%);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 650px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.55;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, #ffffff 0%, #bdfaff 100%);
+      color: #06152f;
+      box-shadow: 0 20px 55px rgba(64,193,200,0.24);
+    }
+
+    .button.secondary {
+      border: 1px solid rgba(255,255,255,0.17);
+      background: rgba(255,255,255,0.06);
+      color: var(--ink);
+    }
+
+    .button.secondary:hover {
+      border-color: rgba(255,255,255,0.34);
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 46px;
+      max-width: 640px;
+    }
+
+    .proof {
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .proof strong {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -0.06em;
+    }
+
+    .proof span {
+      display: block;
+      margin-top: 5px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .dashboard {
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.045));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .dashboard::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 35% 0%, rgba(64,193,200,0.20), transparent 42%);
+      pointer-events: none;
+    }
+
+    .dash-top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .traffic {
+      display: flex;
+      gap: 7px;
+    }
+
+    .traffic i {
+      width: 10px;
+      height: 10px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.24);
+    }
+
+    .dash-label {
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dash-body {
+      position: relative;
+      padding: 22px;
+    }
+
+    .metric-main {
+      padding: 26px;
+      border-radius: 26px;
+      background: rgba(3, 8, 23, 0.42);
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 16px;
+    }
+
+    .metric-main span {
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .metric-main strong {
+      display: block;
+      margin-top: 12px;
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+    }
+
+    .metric-main p {
+      margin-top: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .bars {
+      display: grid;
+      gap: 11px;
+      margin-top: 22px;
+    }
+
+    .bar {
+      display: grid;
+      grid-template-columns: 92px 1fr 46px;
+      align-items: center;
+      gap: 12px;
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .track {
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+      transform-origin: left;
+      animation: grow 1.4s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes grow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .dash-card {
+      min-height: 126px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.11);
+    }
+
+    .dash-card small {
+      color: var(--soft);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+    }
+
+    .dash-card strong {
+      display: block;
+      margin-top: 12px;
+      font-size: 28px;
+      letter-spacing: -0.05em;
+    }
+
+    .dash-card p {
+      margin-top: 8px;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .kicker {
+      color: #b9f8ff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      max-width: 760px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      font-weight: 900;
+    }
+
+    .section-copy {
+      max-width: 420px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 315px;
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.13);
+      background: linear-gradient(180deg, rgba(255,255,255,0.095), rgba(255,255,255,0.045));
+      box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+      overflow: hidden;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(185,248,255,0.36);
+      background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.055));
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -80px auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 999px;
+      background: rgba(64,193,200,0.12);
+      filter: blur(2px);
+    }
+
+    .number {
+      color: rgba(255,255,255,0.34);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+    }
+
+    .card h3 {
+      margin-top: 66px;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .card p {
+      margin-top: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .chip {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.72);
+      font-size: 11px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.13);
+      background: rgba(255,255,255,0.06);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel.pad {
+      padding: 30px;
+    }
+
+    .quote {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .quote p {
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+    }
+
+    .quote span {
+      display: block;
+      margin-top: 24px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .system-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .system-item {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(3,8,23,0.32);
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .system-item:hover {
+      transform: translateX(6px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(64,193,200,0.18), rgba(71,111,214,0.22));
+      border: 1px solid rgba(255,255,255,0.11);
+      font-size: 22px;
+    }
+
+    .system-item h3 {
+      font-size: 18px;
+      letter-spacing: -0.035em;
+    }
+
+    .system-item p {
+      margin-top: 7px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .marquee {
+      border-top: 1px solid rgba(255,255,255,0.10);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      overflow: hidden;
+      background: rgba(255,255,255,0.035);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: slide 28s linear infinite;
+    }
+
+    .marquee span {
+      padding: 22px 28px;
+      color: rgba(255,255,255,0.74);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .cta {
+      text-align: center;
+      padding: 70px 30px;
+      border-radius: 42px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(64,193,200,0.22), transparent 44%),
+        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .cta h2 {
+      margin: 0 auto;
+      max-width: 780px;
+    }
+
+    .cta p {
+      margin: 22px auto 0;
+      max-width: 610px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 17px;
+    }
+
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 22px 44px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: rgba(255,255,255,0.45);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 930px) {
+      .hero,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard {
+        max-width: 680px;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .section {
+        padding-top: 64px;
+        padding-bottom: 64px;
+      }
+
+      .proof-row,
+      .dash-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bar {
+        grid-template-columns: 78px 1fr 36px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
-
 <body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
 
-  <!-- NAVIGATION -->
-
-  <nav class="nav">
-
-    <div class="brand">
-      <img src="assets/cbi-logo.png" alt="CBI Analytics Logo">
-
-      <div>
-        <h1>CBI ANALYTICS</h1>
-        <p>The Operating System for Scale</p>
-      </div>
-    </div>
-
-    <div class="nav-links">
-      <a href="#systems">Systems</a>
-      <a href="#impact">Impact</a>
-      <a href="#insights">Insights</a>
-      <a href="#media">Media</a>
-      <a href="#contact">Contact</a>
-    </div>
-
-  </nav>
-
-  <!-- HERO -->
-
-  <section class="hero">
-
-    <div class="hero-bg"></div>
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-      <div class="hero-profile">
-        <img src="assets/profile.png" alt="Brittney Agoncillo">
-      </div>
-
-      <p class="eyebrow">
-        BRITTNEY AGONCILLO
-      </p>
-
-      <h1 class="hero-title">
-        I BUILD SYSTEMS.<br>
-        I DRIVE REVENUE.<br>
-        I CREATE IMPACT.
-      </h1>
-
-      <p class="hero-subtitle">
-        Revenue operations leader and GTM strategist with 15+ years of experience
-        building high-performance teams and scaling multi-million dollar operations.
-      </p>
-
-      <!-- METRICS -->
-
-      <div class="metrics-grid">
-
-        <div class="metric-card">
-          <h2 id="revenueCounter">$300,000,000+</h2>
-          <p>Revenue Generated</p>
-        </div>
-
-        <div class="metric-card">
-          <h2>100+</h2>
-          <p>Team Members Led</p>
-        </div>
-
-        <div class="metric-card">
-          <h2>15+</h2>
-          <p>Years Leadership</p>
-        </div>
-
-        <div class="metric-card">
-          <h2>50%+</h2>
-          <p>Revenue Growth Delivered</p>
-        </div>
-
-        <div class="metric-card">
-          <h2>Data Driven</h2>
-          <p>Decisions & Systems</p>
-        </div>
-
-      </div>
-
-      <!-- BUTTONS -->
-
-      <div class="hero-buttons">
-
-        <a href="#impact" class="primary-btn">
-          Explore Case Studies
+  <div class="page">
+    <div class="nav-wrap">
+      <nav>
+        <a class="brand" href="#top" aria-label="CBI Analytics home">
+          <span class="mark">CBI</span>
+          <span>CBI Analytics</span>
         </a>
-
-        <a href="#contact" class="secondary-btn">
-          Connect
-        </a>
-
-      </div>
-
+        <div class="nav-links" aria-label="Primary navigation">
+          <a href="#method">Method</a>
+          <a href="#systems">Systems</a>
+          <a href="#impact">Impact</a>
+          <a class="nav-cta" href="mailto:brittneytmo@gmail.com">Start the Conversation</a>
+        </div>
+      </nav>
     </div>
 
-  </section>
+    <main id="top">
+      <section class="section hero">
+        <div class="reveal">
+          <div class="eyebrow"><span class="pulse"></span> Data. Insights. Growth.</div>
+          <h1>Revenue needs more than ambition. <span>It needs architecture.</span></h1>
+          <p class="lead">CBI Analytics builds the operating systems behind high-performing cannabis retailers: clearer decisions, tighter execution, stronger teams, and customer experiences that feel premium because they run consistently.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="mailto:brittneytmo@gmail.com">Build the System →</a>
+            <a class="button secondary" href="#method">See the Framework</a>
+          </div>
+          <div class="proof-row" aria-label="Experience highlights">
+            <div class="proof">
+              <strong>15+</strong>
+              <span>Years in cannabis operations</span>
+            </div>
+            <div class="proof">
+              <strong>$300M+</strong>
+              <span>Enterprise operating exposure</span>
+            </div>
+            <div class="proof">
+              <strong>65+</strong>
+              <span>Team awards and recognitions</span>
+            </div>
+          </div>
+        </div>
 
-  <!-- SYSTEMS -->
+        <div class="dashboard reveal" aria-label="Operational intelligence dashboard visual">
+          <div class="dash-top">
+            <div class="traffic"><i></i><i></i><i></i></div>
+            <div class="dash-label">Operating Intelligence</div>
+          </div>
+          <div class="dash-body">
+            <div class="metric-main">
+              <span>Retail Performance Engine</span>
+              <strong>95%</strong>
+              <p>Targeted consistency across service speed, accountability, repeatable leadership rhythms, and clean execution.</p>
+              <div class="bars">
+                <div class="bar">
+                  <span>Service</span>
+                  <div class="track"><div class="fill" style="width: 92%"></div></div>
+                  <span>92%</span>
+                </div>
+                <div class="bar">
+                  <span>Process</span>
+                  <div class="track"><div class="fill" style="width: 88%"></div></div>
+                  <span>88%</span>
+                </div>
+                <div class="bar">
+                  <span>Revenue</span>
+                  <div class="track"><div class="fill" style="width: 84%"></div></div>
+                  <span>84%</span>
+                </div>
+              </div>
+            </div>
+            <div class="dash-grid">
+              <div class="dash-card">
+                <small>AOV Lift</small>
+                <strong>$60 → $80+</strong>
+                <p>Structured upsells, smarter bundles, and confident frontline coaching.</p>
+              </div>
+              <div class="dash-card">
+                <small>Decision Clarity</small>
+                <strong>Daily KPI</strong>
+                <p>Leadership cadence that turns performance into action, not decoration.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <section class="section" id="systems">
-
-    <div class="section-header">
-      <p class="section-label">THE CBI OPERATING SYSTEM™</p>
-      <h2>A Proven Framework for Building Scalable Revenue Engines</h2>
-    </div>
-
-    <div class="systems-grid">
-
-      <div class="system-card">
-        <span>01</span>
-        <h3>AUDIT</h3>
-        <p>
-          Assess performance systems, workflows, and operational gaps.
-        </p>
-      </div>
-
-      <div class="system-card">
-        <span>02</span>
-        <h3>DIAGNOSE</h3>
-        <p>
-          Identify root causes and prioritize high-impact opportunities.
-        </p>
-      </div>
-
-      <div class="system-card">
-        <span>03</span>
-        <h3>OPTIMIZE</h3>
-        <p>
-          Design and implement data-driven systems that drive efficiency.
-        </p>
-      </div>
-
-      <div class="system-card">
-        <span>04</span>
-        <h3>SCALE</h3>
-        <p>
-          Execute growth strategies that accelerate revenue performance.
-        </p>
-      </div>
-
-      <div class="system-card">
-        <span>05</span>
-        <h3>SUSTAIN</h3>
-        <p>
-          Monitor, refine, and build systems that create lasting impact.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- IMPACT -->
-
-  <section class="section" id="impact">
-
-    <div class="section-header">
-      <p class="section-label">TRANSFORMATIONAL IMPACT</p>
-      <h2>Operational Systems That Drive Real Revenue</h2>
-    </div>
-
-    <div class="impact-grid">
-
-      <div class="impact-card">
-        <div class="impact-image"></div>
-
-        <div class="impact-content">
-          <h3>Cannabis Retail Growth Systems</h3>
-
-          <p>
-            Scaled a Las Vegas retail brand to multi-million dollar monthly revenue
-            through operational systems, training, and execution.
-          </p>
-
-          <span>+62% Revenue Growth</span>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Operational Audit</span><span>Revenue Strategy</span><span>KPI Architecture</span><span>Leadership Cadence</span><span>Retail Experience</span><span>Workflow Design</span>
+          <span>Operational Audit</span><span>Revenue Strategy</span><span>KPI Architecture</span><span>Leadership Cadence</span><span>Retail Experience</span><span>Workflow Design</span>
         </div>
       </div>
 
-      <div class="impact-card">
-        <div class="impact-image"></div>
-
-        <div class="impact-content">
-          <h3>New Market Expansion</h3>
-
-          <p>
-            Led GTM strategy and execution across multiple states and high-growth markets.
-          </p>
-
-          <span>+8 Markets Entered</span>
+      <section id="method" class="section">
+        <div class="section-head reveal">
+          <div>
+            <div class="kicker">The Method</div>
+            <h2>Three phases. One goal: predictable performance.</h2>
+          </div>
+          <p class="section-copy">Most retailers do not have a product problem. They have a consistency problem. CBI turns scattered effort into a system the team can actually run.</p>
         </div>
-      </div>
 
-      <div class="impact-card">
-        <div class="impact-image"></div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="number">PHASE 01</div>
+            <h3>Revenue Audit</h3>
+            <p>A focused breakdown of customer flow, sales behavior, operational friction, leadership gaps, and revenue leaks hiding in plain sight.</p>
+            <div class="chip-row">
+              <span class="chip">2–4 Weeks</span>
+              <span class="chip">Audit</span>
+              <span class="chip">Action Plan</span>
+            </div>
+          </article>
 
-        <div class="impact-content">
-          <h3>Delivery & Ops Optimization</h3>
+          <article class="card reveal">
+            <div class="number">PHASE 02</div>
+            <h3>Operational Reset</h3>
+            <p>Refine team structure, SOPs, workflow standards, accountability systems, and sales behaviors so the business performs with less guesswork.</p>
+            <div class="chip-row">
+              <span class="chip">4–12 Weeks</span>
+              <span class="chip">SOPs</span>
+              <span class="chip">Team Design</span>
+            </div>
+          </article>
 
-          <p>
-            Designed and implemented systems that increased SLA adherence and customer satisfaction.
-          </p>
-
-          <span>95%+ SLA Achievement</span>
+          <article class="card reveal">
+            <div class="number">PHASE 03</div>
+            <h3>Systems Buildout</h3>
+            <p>Install the KPI structure, leadership cadence, training systems, and performance management rhythms that make growth repeatable.</p>
+            <div class="chip-row">
+              <span class="chip">Implementation</span>
+              <span class="chip">Training</span>
+              <span class="chip">Scale</span>
+            </div>
+          </article>
         </div>
-      </div>
+      </section>
 
-    </div>
+      <section id="systems" class="section">
+        <div class="split">
+          <div class="panel pad quote reveal">
+            <div>
+              <div class="kicker">What Changes</div>
+              <p>Luxury is not created by design. It is created by consistency.</p>
+              <span>The experience gets stronger when every shift knows the standard, every leader knows the scoreboard, and every decision moves the business forward.</span>
+            </div>
+          </div>
 
-  </section>
+          <div class="panel pad reveal">
+            <div class="system-list">
+              <div class="system-item">
+                <div class="icon">↗</div>
+                <div>
+                  <h3>Revenue behavior becomes visible.</h3>
+                  <p>Track the real drivers: AOV, conversion, units per transaction, repeat visits, customer flow, and coaching moments.</p>
+                </div>
+              </div>
+              <div class="system-item">
+                <div class="icon">◈</div>
+                <div>
+                  <h3>Leadership stops operating on vibes.</h3>
+                  <p>Daily and weekly review rhythms help managers coach the floor, protect standards, and make cleaner decisions.</p>
+                </div>
+              </div>
+              <div class="system-item">
+                <div class="icon">⌁</div>
+                <div>
+                  <h3>The customer experience gets repeatable.</h3>
+                  <p>Speed, trust, education, recommendation quality, and service consistency become part of the operating model.</p>
+                </div>
+              </div>
+              <div class="system-item">
+                <div class="icon">●</div>
+                <div>
+                  <h3>Growth stops feeling accidental.</h3>
+                  <p>CBI connects strategy to execution so the business can scale without losing control of the guest experience.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <!-- INSIGHTS -->
+      <section id="impact" class="section">
+        <div class="cta reveal">
+          <div class="kicker">Clarity in Every Decision</div>
+          <h2>Build the kind of retail operation people trust before they ever see the numbers.</h2>
+          <p>CBI Analytics helps cannabis operators tighten execution, elevate service, and create the systems that make revenue more predictable.</p>
+          <div class="hero-actions" style="justify-content: center;">
+            <a class="button primary" href="mailto:brittneytmo@gmail.com">Contact CBI Analytics →</a>
+            <a class="button secondary" href="#top">Back to Top</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <section class="section" id="insights">
+    <footer>
+      <span>© <span id="year"></span> CBI Analytics. Built for operators who move with clarity.</span>
+      <span>Data. Insights. Growth.</span>
+    </footer>
+  </div>
 
-    <div class="section-header">
-      <p class="section-label">INSIGHTS, PRESS & PUBLICATIONS</p>
-      <h2>Leadership, Systems, and Revenue Intelligence</h2>
-    </div>
+  <script>
+    const year = document.getElementById('year');
+    year.textContent = new Date().getFullYear();
 
-    <div class="insights-grid">
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-      <a class="insight-card" href="#">
-        <h3>Vegas Cannabis Magazine</h3>
+    reveals.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 70, 420)}ms`;
+      observer.observe(item);
+    });
 
-        <p>
-          Building scalable retail systems in regulated industries.
-        </p>
-      </a>
+    const dashboard = document.querySelector('.dashboard');
+    if (dashboard && window.matchMedia('(pointer: fine)').matches) {
+      dashboard.addEventListener('mousemove', (event) => {
+        const rect = dashboard.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const rotateY = ((x / rect.width) - 0.5) * 8;
+        const rotateX = ((y / rect.height) - 0.5) * -8;
+        dashboard.style.transform = `perspective(1100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
 
-      <a class="insight-card" href="#">
-        <h3>PR%F Awards Journal</h3>
-
-        <p>
-          Executive Judge spotlight on infused beverage innovation.
-        </p>
-      </a>
-
-      <a class="insight-card" href="#">
-        <h3>UC Riverside Speaker Series</h3>
-
-        <p>
-          Operational intelligence and GTM execution in the modern era.
-        </p>
-      </a>
-
-    </div>
-
-  </section>
-
-  <!-- MEDIA -->
-
-  <section class="section" id="media">
-
-    <div class="section-header">
-      <p class="section-label">MEDIA & SPEAKING</p>
-      <h2>Brand Activations, Leadership & Industry Influence</h2>
-    </div>
-
-    <div class="media-grid">
-
-      <div class="media-card">
-        <div class="play-button">▶</div>
-        <p>Celebrity Walkthroughs</p>
-      </div>
-
-      <div class="media-card">
-        <div class="play-button">▶</div>
-        <p>Industry Panels</p>
-      </div>
-
-      <div class="media-card">
-        <div class="play-button">▶</div>
-        <p>University Speaking</p>
-      </div>
-
-      <div class="media-card">
-        <div class="play-button">▶</div>
-        <p>Brand Activations</p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- CONTACT -->
-
-  <section class="contact-section" id="contact">
-
-    <div class="contact-content">
-
-      <p class="contact-label">
-        GREAT OPERATORS SOLVE TODAY’S PROBLEMS.
-      </p>
-
-      <h2>
-        GREAT LEADERS BUILD SYSTEMS THAT SCALE TOMORROW.
-      </h2>
-
-      <a href="mailto:hello@cbianalytics.com" class="contact-btn">
-        ENTER THE CBI NETWORK →
-      </a>
-
-    </div>
-
-  </section>
-
-  <!-- FOOTER -->
-
-  <footer class="footer">
-
-    <div class="footer-brand">
-
-      <img src="assets/cbi-logo.png" alt="CBI Analytics Logo">
-
-      <div>
-        <h3>CBI ANALYTICS</h3>
-        <p>The Operating System for Scale</p>
-      </div>
-
-    </div>
-
-    <div class="footer-links">
-      <a href="#">LinkedIn</a>
-      <a href="#">Instagram</a>
-      <a href="#">Email</a>
-    </div>
-
-  </footer>
-
-  <script src="script.js"></script>
-
+      dashboard.addEventListener('mouseleave', () => {
+        dashboard.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg)';
+      });
+    }
+  </script>
 </body>
 </html>
