@@ -129,7 +129,8 @@
       max-width: 720px;
     }
 
-    .eyebrow {
+    .eyebrow,
+    .section-label {
       font-size: 12px;
       letter-spacing: 4px;
       text-transform: uppercase;
@@ -205,15 +206,6 @@
       margin: 0 auto;
     }
 
-    .section-label {
-      color: #40c1c8;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-size: 12px;
-      margin-bottom: 18px;
-      font-weight: 700;
-    }
-
     h2 {
       font-size: clamp(38px, 5vw, 72px);
       line-height: 1;
@@ -263,6 +255,71 @@
       color: rgba(255,255,255,0.68);
       font-size: 16px;
       line-height: 1.7;
+    }
+
+    .trusted-section {
+      padding: 120px 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(64,193,200,0.10), transparent 40%),
+        #020617;
+    }
+
+    .trusted-header {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 80px;
+    }
+
+    .trusted-header h2 {
+      max-width: 900px;
+    }
+
+    .logo-carousel {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    }
+
+    .logo-track {
+      display: flex;
+      align-items: center;
+      gap: 90px;
+      width: max-content;
+      animation: scrollLogos 38s linear infinite;
+    }
+
+    .logo-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      opacity: 0.75;
+      transition: all 0.3s ease;
+    }
+
+    .logo-item:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .logo-item img {
+      max-width: 180px;
+      max-height: 90px;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(1.4) contrast(1.05);
+    }
+
+    @keyframes scrollLogos {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     .impact {
@@ -345,6 +402,19 @@
         grid-template-columns: 1fr;
       }
 
+      .trusted-header {
+        padding: 0 30px;
+      }
+
+      .logo-track {
+        gap: 55px;
+      }
+
+      .logo-item img {
+        max-width: 120px;
+        max-height: 60px;
+      }
+
       footer {
         padding: 40px 30px;
       }
@@ -365,9 +435,9 @@
 
     <nav>
       <a href="#systems">Systems</a>
+      <a href="#trusted">Trusted</a>
       <a href="#impact">Impact</a>
       <a href="#insights">Insights</a>
-      <a href="#media">Media</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -381,9 +451,7 @@
         <div class="hero-text">
           <p class="eyebrow">Operational Intelligence</p>
 
-          <h1>
-            Building the systems behind high-performing retail.
-          </h1>
+          <h1>Building the systems behind high-performing retail.</h1>
 
           <p class="hero-description">
             CBI Analytics helps modern retail operators scale through operational clarity,
@@ -411,26 +479,67 @@
           <div class="card">
             <span>01</span>
             <h3>Operational Audits</h3>
-            <p>
-              Identify where revenue, time, and customer trust are quietly leaking inside the business.
-            </p>
+            <p>Identify where revenue, time, and customer trust are quietly leaking inside the business.</p>
           </div>
 
           <div class="card">
             <span>02</span>
             <h3>Workflow Design</h3>
-            <p>
-              Build simple, repeatable systems that help teams execute consistently from open to close.
-            </p>
+            <p>Build simple, repeatable systems that help teams execute consistently from open to close.</p>
           </div>
 
           <div class="card">
             <span>03</span>
             <h3>Leadership Cadence</h3>
-            <p>
-              Create accountability structures that make performance visible, coachable, and scalable.
-            </p>
+            <p>Create accountability structures that make performance visible, coachable, and scalable.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trusted" class="trusted-section">
+      <div class="trusted-header">
+        <p class="section-label">Trusted Network</p>
+        <h2>Trusted by operators, media platforms, universities, and emerging brands.</h2>
+      </div>
+
+      <div class="logo-carousel">
+        <div class="logo-track">
+
+          <div class="logo-item"><img src="images/logos/jardin.png" alt="Jardin"></div>
+          <div class="logo-item"><img src="images/logos/snp.png" alt="Some Neat Place"></div>
+          <div class="logo-item"><img src="images/logos/obl.png" alt="Original Breeders League"></div>
+          <div class="logo-item"><img src="images/logos/foodbeverage.png" alt="Food and Beverage Magazine"></div>
+          <div class="logo-item"><img src="images/logos/profmagazine.png" alt="PROF the Magazine"></div>
+          <div class="logo-item"><img src="images/logos/vegascannabis.png" alt="Vegas Cannabis"></div>
+          <div class="logo-item"><img src="images/logos/curaleaf.png" alt="Curaleaf"></div>
+          <div class="logo-item"><img src="images/logos/unlv.png" alt="UNLV"></div>
+          <div class="logo-item"><img src="images/logos/kona.png" alt="Kona Coffee House"></div>
+          <div class="logo-item"><img src="images/logos/metanoia.png" alt="Metanoia Records"></div>
+          <div class="logo-item"><img src="images/logos/ucr.png" alt="UCR"></div>
+          <div class="logo-item"><img src="images/logos/abc.png" alt="ABC"></div>
+          <div class="logo-item"><img src="images/logos/mycannabis.png" alt="My Cannabis"></div>
+          <div class="logo-item"><img src="images/logos/damatequila.png" alt="Dama Tequila"></div>
+          <div class="logo-item"><img src="images/logos/nextshark.png" alt="NextShark"></div>
+          <div class="logo-item"><img src="images/logos/blackstone.png" alt="Blackstone LaunchPad"></div>
+
+          <div class="logo-item"><img src="images/logos/jardin.png" alt="Jardin"></div>
+          <div class="logo-item"><img src="images/logos/snp.png" alt="Some Neat Place"></div>
+          <div class="logo-item"><img src="images/logos/obl.png" alt="Original Breeders League"></div>
+          <div class="logo-item"><img src="images/logos/foodbeverage.png" alt="Food and Beverage Magazine"></div>
+          <div class="logo-item"><img src="images/logos/profmagazine.png" alt="PROF the Magazine"></div>
+          <div class="logo-item"><img src="images/logos/vegascannabis.png" alt="Vegas Cannabis"></div>
+          <div class="logo-item"><img src="images/logos/curaleaf.png" alt="Curaleaf"></div>
+          <div class="logo-item"><img src="images/logos/unlv.png" alt="UNLV"></div>
+          <div class="logo-item"><img src="images/logos/kona.png" alt="Kona Coffee House"></div>
+          <div class="logo-item"><img src="images/logos/metanoia.png" alt="Metanoia Records"></div>
+          <div class="logo-item"><img src="images/logos/ucr.png" alt="UCR"></div>
+          <div class="logo-item"><img src="images/logos/abc.png" alt="ABC"></div>
+          <div class="logo-item"><img src="images/logos/mycannabis.png" alt="My Cannabis"></div>
+          <div class="logo-item"><img src="images/logos/damatequila.png" alt="Dama Tequila"></div>
+          <div class="logo-item"><img src="images/logos/nextshark.png" alt="NextShark"></div>
+          <div class="logo-item"><img src="images/logos/blackstone.png" alt="Blackstone LaunchPad"></div>
+
         </div>
       </div>
     </section>
@@ -476,17 +585,6 @@
           The strongest retail brands do not simply design beautiful spaces.
           They engineer environments where teams move with confidence, systems reduce friction,
           communication feels intentional, and the customer journey feels seamless from beginning to end.
-        </p>
-      </div>
-    </section>
-
-    <section id="media">
-      <div class="section-inner">
-        <p class="section-label">Media</p>
-        <h2>Modern retail requires modern operating intelligence.</h2>
-        <p class="section-copy">
-          Explore insights on cannabis retail operations, customer experience, leadership systems,
-          and the business mechanics behind high-performing teams.
         </p>
       </div>
     </section>
