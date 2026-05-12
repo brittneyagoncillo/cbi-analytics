@@ -3,13 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CBI Analytics | The Operating System for Scale</title>
-
+  <title>CBI Analytics | Clarity in Every Decision</title>
+  <meta name="description" content="CBI Analytics is a data-driven operations consulting firm helping cannabis retailers build the systems behind predictable revenue, scalable teams, and premium customer experiences." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --ink: #ffffff;
+      --muted: rgba(255, 255, 255, 0.68);
+      --soft: rgba(255, 255, 255, 0.48);
+      --navy: #06152f;
+      --navy-2: #0c2240;
+      --blue: #476fd6;
+      --teal: #40c1c8;
+      --glass: rgba(255, 255, 255, 0.075);
+      --glass-strong: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.14);
+      --shadow: 0 30px 100px rgba(0, 0, 0, 0.42);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     html {
@@ -17,596 +38,990 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #020617;
-      color: #ffffff;
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(64, 193, 200, 0.20), transparent 28%),
+        radial-gradient(circle at 82% 3%, rgba(71, 111, 214, 0.28), transparent 34%),
+        radial-gradient(circle at 50% 90%, rgba(64, 193, 200, 0.10), transparent 35%),
+        linear-gradient(135deg, #030817 0%, #071833 44%, #0c2240 100%);
       overflow-x: hidden;
     }
 
-    header {
+    body::before {
+      content: "";
       position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.045) 44%, transparent 72%);
+      mix-blend-mode: screen;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .orb {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      filter: blur(20px);
+      opacity: 0.18;
+      pointer-events: none;
+      animation: float 9s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .orb.one {
+      top: 10%;
+      left: -160px;
+      background: var(--teal);
+    }
+
+    .orb.two {
+      right: -180px;
+      bottom: 12%;
+      background: var(--blue);
+      animation-delay: -3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(26px, -32px, 0) scale(1.08); }
+    }
+
+    .nav-wrap {
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
       z-index: 20;
+      backdrop-filter: blur(22px);
+      background: rgba(3, 8, 23, 0.56);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 28px 56px;
-      background: rgba(2, 6, 23, 0.86);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      gap: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
     }
 
-    .brand img {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-    }
-
-    .brand-title {
-      font-size: clamp(42px, 6vw, 86px);
-      line-height: 0.85;
-      letter-spacing: -4px;
+    .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(145deg, rgba(64, 193, 200, 0.95), rgba(71, 111, 214, 0.92));
+      box-shadow: 0 14px 36px rgba(64, 193, 200, 0.24);
+      font-size: 14px;
       font-weight: 900;
-      color: #ffffff;
     }
 
-    .tagline {
-      font-size: 17px;
-      margin-top: 10px;
-      color: rgba(255,255,255,0.88);
-      letter-spacing: -0.3px;
-    }
-
-    nav {
+    .nav-links {
       display: flex;
-      gap: 24px;
       align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
     }
 
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      opacity: 0.9;
-      transition: opacity 0.25s ease;
+    .nav-links a {
+      transition: color 180ms ease, transform 180ms ease;
     }
 
-    nav a:hover {
-      opacity: 1;
-      color: #40c1c8;
+    .nav-links a:hover {
+      color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 11px 16px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 88px 22px;
     }
 
     .hero {
-      position: relative;
-      min-height: 100vh;
-      background-image: url('images/hero-bg.png');
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
       align-items: center;
-      overflow: hidden;
-      padding-top: 160px;
+      min-height: calc(100vh - 78px);
+      padding-top: 56px;
+      padding-bottom: 72px;
     }
 
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(2, 6, 23, 0.9) 0%,
-          rgba(2, 6, 23, 0.6) 42%,
-          rgba(2, 6, 23, 0.25) 100%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(2, 6, 23, 0.25) 0%,
-          rgba(2, 6, 23, 0.9) 100%
-        );
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 80px;
-    }
-
-    .hero-text {
-      max-width: 720px;
-    }
-
-    .eyebrow,
-    .section-label {
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.055);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.78);
       font-size: 12px;
-      letter-spacing: 4px;
+      font-weight: 800;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
-      color: #40c1c8;
       margin-bottom: 24px;
-      font-weight: 700;
     }
 
-    .hero h1 {
-      font-size: clamp(56px, 7vw, 104px);
-      line-height: 0.92;
-      letter-spacing: -5px;
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--teal);
+      box-shadow: 0 0 0 8px rgba(64,193,200,0.10);
+    }
+
+    h1 {
+      max-width: 880px;
+      font-size: clamp(48px, 8vw, 94px);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
       font-weight: 900;
-      color: #ffffff;
-      margin-bottom: 32px;
-      max-width: 950px;
     }
 
-    .hero-description {
-      font-size: 20px;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.82);
-      max-width: 660px;
-      margin-bottom: 42px;
+    .hero h1 span {
+      display: block;
+      background: linear-gradient(90deg, #ffffff 0%, #b9f8ff 52%, #9eb4ff 100%);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 650px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.55;
+      letter-spacing: -0.025em;
     }
 
     .hero-actions {
       display: flex;
-      gap: 16px;
       flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
     }
 
-    .hero-button {
+    .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 16px 34px;
-      border: 1px solid rgba(255,255,255,0.16);
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 20px;
       border-radius: 999px;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      backdrop-filter: blur(12px);
-      background: rgba(255,255,255,0.07);
-      transition: all 0.3s ease;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
 
-    .hero-button:hover {
-      background: rgba(255,255,255,0.14);
+    .button:hover {
       transform: translateY(-2px);
     }
 
-    .hero-button.primary {
-      background: #ffffff;
-      color: #020617;
-      border-color: #ffffff;
+    .button.primary {
+      background: linear-gradient(135deg, #ffffff 0%, #bdfaff 100%);
+      color: #06152f;
+      box-shadow: 0 20px 55px rgba(64,193,200,0.24);
     }
 
-    .hero-button.primary:hover {
-      background: #40c1c8;
-      border-color: #40c1c8;
-      color: #020617;
+    .button.secondary {
+      border: 1px solid rgba(255,255,255,0.17);
+      background: rgba(255,255,255,0.06);
+      color: var(--ink);
     }
 
-    section {
-      padding: 110px 80px;
+    .button.secondary:hover {
+      border-color: rgba(255,255,255,0.34);
     }
 
-    .section-inner {
-      max-width: 1200px;
-      margin: 0 auto;
+    .proof-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 46px;
+      max-width: 640px;
+    }
+
+    .proof {
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .proof strong {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -0.06em;
+    }
+
+    .proof span {
+      display: block;
+      margin-top: 5px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .dashboard {
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.045));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .dashboard::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 35% 0%, rgba(64,193,200,0.20), transparent 42%);
+      pointer-events: none;
+    }
+
+    .dash-top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .traffic {
+      display: flex;
+      gap: 7px;
+    }
+
+    .traffic i {
+      width: 10px;
+      height: 10px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.24);
+    }
+
+    .dash-label {
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dash-body {
+      position: relative;
+      padding: 22px;
+    }
+
+    .metric-main {
+      padding: 26px;
+      border-radius: 26px;
+      background: rgba(3, 8, 23, 0.42);
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 16px;
+    }
+
+    .metric-main span {
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .metric-main strong {
+      display: block;
+      margin-top: 12px;
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+    }
+
+    .metric-main p {
+      margin-top: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .bars {
+      display: grid;
+      gap: 11px;
+      margin-top: 22px;
+    }
+
+    .bar {
+      display: grid;
+      grid-template-columns: 92px 1fr 46px;
+      align-items: center;
+      gap: 12px;
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .track {
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+      transform-origin: left;
+      animation: grow 1.4s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes grow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .dash-card {
+      min-height: 126px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.11);
+    }
+
+    .dash-card small {
+      color: var(--soft);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+    }
+
+    .dash-card strong {
+      display: block;
+      margin-top: 12px;
+      font-size: 28px;
+      letter-spacing: -0.05em;
+    }
+
+    .dash-card p {
+      margin-top: 8px;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .kicker {
+      color: #b9f8ff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
     h2 {
-      font-size: clamp(38px, 5vw, 72px);
-      line-height: 1;
-      letter-spacing: -3px;
-      margin-bottom: 24px;
+      max-width: 760px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      font-weight: 900;
     }
 
     .section-copy {
-      color: rgba(255,255,255,0.72);
-      font-size: 19px;
-      line-height: 1.8;
-      max-width: 850px;
+      max-width: 420px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      margin-top: 50px;
+      gap: 16px;
     }
 
     .card {
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 28px;
-      padding: 34px;
-      min-height: 240px;
-      backdrop-filter: blur(18px);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.28);
+      position: relative;
+      min-height: 315px;
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.13);
+      background: linear-gradient(180deg, rgba(255,255,255,0.095), rgba(255,255,255,0.045));
+      box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+      overflow: hidden;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
     }
 
-    .card span {
-      display: block;
-      color: #40c1c8;
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(185,248,255,0.36);
+      background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.055));
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -80px auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 999px;
+      background: rgba(64,193,200,0.12);
+      filter: blur(2px);
+    }
+
+    .number {
+      color: rgba(255,255,255,0.34);
       font-size: 13px;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
     }
 
     .card h3 {
-      font-size: 25px;
-      margin-bottom: 16px;
-      letter-spacing: -1px;
+      margin-top: 66px;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.05em;
     }
 
     .card p {
-      color: rgba(255,255,255,0.68);
-      font-size: 16px;
-      line-height: 1.7;
+      margin-top: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
     }
 
-    .trusted-section {
-      padding: 120px 0;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at center, rgba(64,193,200,0.10), transparent 40%),
-        #020617;
-    }
-
-    .trusted-header {
-      max-width: 1200px;
-      margin: 0 auto 60px;
-      padding: 0 80px;
-    }
-
-    .trusted-header h2 {
-      max-width: 900px;
-    }
-
-    .logo-carousel {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-    }
-
-    .logo-track {
+    .chip-row {
       display: flex;
-      align-items: center;
-      gap: 90px;
-      width: max-content;
-      animation: scrollLogos 38s linear infinite;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
     }
 
-    .logo-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 180px;
-      opacity: 0.75;
-      transition: all 0.3s ease;
+    .chip {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.72);
+      font-size: 11px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.09);
     }
 
-    .logo-item:hover {
-      opacity: 1;
-      transform: translateY(-2px);
-    }
-
-    .logo-item img {
-      max-width: 180px;
-      max-height: 90px;
-      object-fit: contain;
-      filter: grayscale(100%) brightness(1.4) contrast(1.05);
-    }
-
-    @keyframes scrollLogos {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    .impact {
-      background:
-        radial-gradient(circle at top right, rgba(64,193,200,0.16), transparent 35%),
-        #06111f;
-    }
-
-    .metrics {
+    .split {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-      margin-top: 50px;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 18px;
+      align-items: stretch;
     }
 
-    .metric {
-      border-top: 1px solid rgba(255,255,255,0.18);
-      padding-top: 24px;
+    .panel {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.13);
+      background: rgba(255,255,255,0.06);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .metric strong {
-      font-size: 44px;
-      letter-spacing: -2px;
+    .panel.pad {
+      padding: 30px;
+    }
+
+    .quote {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .quote p {
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+    }
+
+    .quote span {
       display: block;
-      margin-bottom: 8px;
+      margin-top: 24px;
+      color: var(--muted);
+      line-height: 1.65;
     }
 
-    .metric p {
-      color: rgba(255,255,255,0.65);
-      line-height: 1.5;
+    .system-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .system-item {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(3,8,23,0.32);
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .system-item:hover {
+      transform: translateX(6px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(64,193,200,0.18), rgba(71,111,214,0.22));
+      border: 1px solid rgba(255,255,255,0.11);
+      font-size: 22px;
+    }
+
+    .system-item h3 {
+      font-size: 18px;
+      letter-spacing: -0.035em;
+    }
+
+    .system-item p {
+      margin-top: 7px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .marquee {
+      border-top: 1px solid rgba(255,255,255,0.10);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      overflow: hidden;
+      background: rgba(255,255,255,0.035);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: slide 28s linear infinite;
+    }
+
+    .marquee span {
+      padding: 22px 28px;
+      color: rgba(255,255,255,0.74);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .cta {
+      text-align: center;
+      padding: 70px 30px;
+      border-radius: 42px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(64,193,200,0.22), transparent 44%),
+        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .cta h2 {
+      margin: 0 auto;
+      max-width: 780px;
+    }
+
+    .cta p {
+      margin: 22px auto 0;
+      max-width: 610px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 17px;
     }
 
     footer {
-      padding: 60px 80px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.55);
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 22px 44px;
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
+      gap: 18px;
+      color: rgba(255,255,255,0.45);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
-    @media (max-width: 980px) {
-      header {
-        padding: 22px 28px;
-      }
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
 
-      nav {
-        display: none;
-      }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-      .brand-title {
-        font-size: 48px;
-        letter-spacing: -2px;
-      }
-
-      .tagline {
-        font-size: 14px;
-      }
-
-      .hero-content {
-        padding: 0 30px;
-      }
-
-      .hero h1 {
-        font-size: 58px;
-        letter-spacing: -3px;
-      }
-
-      .hero-description {
-        font-size: 17px;
-      }
-
-      section {
-        padding: 80px 30px;
-      }
-
-      .cards,
-      .metrics {
+    @media (max-width: 930px) {
+      .hero,
+      .split {
         grid-template-columns: 1fr;
       }
 
-      .trusted-header {
-        padding: 0 30px;
+      .dashboard {
+        max-width: 680px;
       }
 
-      .logo-track {
-        gap: 55px;
+      .section-head {
+        align-items: start;
+        flex-direction: column;
       }
 
-      .logo-item img {
-        max-width: 120px;
-        max-height: 60px;
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .section {
+        padding-top: 64px;
+        padding-bottom: 64px;
+      }
+
+      .proof-row,
+      .dash-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bar {
+        grid-template-columns: 78px 1fr 36px;
       }
 
       footer {
-        padding: 40px 30px;
+        flex-direction: column;
       }
     }
   </style>
 </head>
-
 <body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
 
-  <header>
-    <div class="brand">
-      <img src="images/logo.png" alt="CBI Analytics Logo" />
-      <div>
-        <div class="brand-title">CBI ANALYTICS</div>
-        <div class="tagline">The Operating System for Scale</div>
-      </div>
+  <div class="page">
+    <div class="nav-wrap">
+      <nav>
+        <a class="brand" href="#top" aria-label="CBI Analytics home">
+          <span class="mark">CBI</span>
+          <span>CBI Analytics</span>
+        </a>
+        <div class="nav-links" aria-label="Primary navigation">
+          <a href="#method">Method</a>
+          <a href="#systems">Systems</a>
+          <a href="#impact">Impact</a>
+          <a class="nav-cta" href="mailto:brittneytmo@gmail.com">Start the Conversation</a>
+        </div>
+      </nav>
     </div>
 
-    <nav>
-      <a href="#systems">Systems</a>
-      <a href="#trusted">Trusted</a>
-      <a href="#impact">Impact</a>
-      <a href="#insights">Insights</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-
-    <section class="hero">
-      <div class="hero-overlay"></div>
-
-      <div class="hero-content">
-        <div class="hero-text">
-          <p class="eyebrow">Operational Intelligence</p>
-
-          <h1>Building the systems behind high-performing retail.</h1>
-
-          <p class="hero-description">
-            CBI Analytics helps modern retail operators scale through operational clarity,
-            customer experience strategy, and data-driven execution.
-          </p>
-
+    <main id="top">
+      <section class="section hero">
+        <div class="reveal">
+          <div class="eyebrow"><span class="pulse"></span> Data. Insights. Growth.</div>
+          <h1>Revenue needs more than ambition. <span>It needs architecture.</span></h1>
+          <p class="lead">CBI Analytics builds the operating systems behind high-performing cannabis retailers: clearer decisions, tighter execution, stronger teams, and customer experiences that feel premium because they run consistently.</p>
           <div class="hero-actions">
-            <a href="#insights" class="hero-button primary">View Insights</a>
-            <a href="#contact" class="hero-button">Start the Conversation</a>
+            <a class="button primary" href="mailto:brittneytmo@gmail.com">Build the System →</a>
+            <a class="button secondary" href="#method">See the Framework</a>
+          </div>
+          <div class="proof-row" aria-label="Experience highlights">
+            <div class="proof">
+              <strong>15+</strong>
+              <span>Years in cannabis operations</span>
+            </div>
+            <div class="proof">
+              <strong>$300M+</strong>
+              <span>Enterprise operating exposure</span>
+            </div>
+            <div class="proof">
+              <strong>65+</strong>
+              <span>Team awards and recognitions</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="systems">
-      <div class="section-inner">
-        <p class="section-label">Systems</p>
-        <h2>Clarity creates consistency.</h2>
-        <p class="section-copy">
-          High-performing retail is not built on hope. It is built through clear workflows,
-          strong leadership rhythms, measurable standards, and operational systems that hold under pressure.
-        </p>
+        <div class="dashboard reveal" aria-label="Operational intelligence dashboard visual">
+          <div class="dash-top">
+            <div class="traffic"><i></i><i></i><i></i></div>
+            <div class="dash-label">Operating Intelligence</div>
+          </div>
+          <div class="dash-body">
+            <div class="metric-main">
+              <span>Retail Performance Engine</span>
+              <strong>95%</strong>
+              <p>Targeted consistency across service speed, accountability, repeatable leadership rhythms, and clean execution.</p>
+              <div class="bars">
+                <div class="bar">
+                  <span>Service</span>
+                  <div class="track"><div class="fill" style="width: 92%"></div></div>
+                  <span>92%</span>
+                </div>
+                <div class="bar">
+                  <span>Process</span>
+                  <div class="track"><div class="fill" style="width: 88%"></div></div>
+                  <span>88%</span>
+                </div>
+                <div class="bar">
+                  <span>Revenue</span>
+                  <div class="track"><div class="fill" style="width: 84%"></div></div>
+                  <span>84%</span>
+                </div>
+              </div>
+            </div>
+            <div class="dash-grid">
+              <div class="dash-card">
+                <small>AOV Lift</small>
+                <strong>$60 → $80+</strong>
+                <p>Structured upsells, smarter bundles, and confident frontline coaching.</p>
+              </div>
+              <div class="dash-card">
+                <small>Decision Clarity</small>
+                <strong>Daily KPI</strong>
+                <p>Leadership cadence that turns performance into action, not decoration.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Operational Audit</span><span>Revenue Strategy</span><span>KPI Architecture</span><span>Leadership Cadence</span><span>Retail Experience</span><span>Workflow Design</span>
+          <span>Operational Audit</span><span>Revenue Strategy</span><span>KPI Architecture</span><span>Leadership Cadence</span><span>Retail Experience</span><span>Workflow Design</span>
+        </div>
+      </div>
+
+      <section id="method" class="section">
+        <div class="section-head reveal">
+          <div>
+            <div class="kicker">The Method</div>
+            <h2>Three phases. One goal: predictable performance.</h2>
+          </div>
+          <p class="section-copy">Most retailers do not have a product problem. They have a consistency problem. CBI turns scattered effort into a system the team can actually run.</p>
+        </div>
 
         <div class="cards">
-          <div class="card">
-            <span>01</span>
-            <h3>Operational Audits</h3>
-            <p>Identify where revenue, time, and customer trust are quietly leaking inside the business.</p>
+          <article class="card reveal">
+            <div class="number">PHASE 01</div>
+            <h3>Revenue Audit</h3>
+            <p>A focused breakdown of customer flow, sales behavior, operational friction, leadership gaps, and revenue leaks hiding in plain sight.</p>
+            <div class="chip-row">
+              <span class="chip">2–4 Weeks</span>
+              <span class="chip">Audit</span>
+              <span class="chip">Action Plan</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="number">PHASE 02</div>
+            <h3>Operational Reset</h3>
+            <p>Refine team structure, SOPs, workflow standards, accountability systems, and sales behaviors so the business performs with less guesswork.</p>
+            <div class="chip-row">
+              <span class="chip">4–12 Weeks</span>
+              <span class="chip">SOPs</span>
+              <span class="chip">Team Design</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="number">PHASE 03</div>
+            <h3>Systems Buildout</h3>
+            <p>Install the KPI structure, leadership cadence, training systems, and performance management rhythms that make growth repeatable.</p>
+            <div class="chip-row">
+              <span class="chip">Implementation</span>
+              <span class="chip">Training</span>
+              <span class="chip">Scale</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="systems" class="section">
+        <div class="split">
+          <div class="panel pad quote reveal">
+            <div>
+              <div class="kicker">What Changes</div>
+              <p>Luxury is not created by design. It is created by consistency.</p>
+              <span>The experience gets stronger when every shift knows the standard, every leader knows the scoreboard, and every decision moves the business forward.</span>
+            </div>
           </div>
 
-          <div class="card">
-            <span>02</span>
-            <h3>Workflow Design</h3>
-            <p>Build simple, repeatable systems that help teams execute consistently from open to close.</p>
-          </div>
-
-          <div class="card">
-            <span>03</span>
-            <h3>Leadership Cadence</h3>
-            <p>Create accountability structures that make performance visible, coachable, and scalable.</p>
+          <div class="panel pad reveal">
+            <div class="system-list">
+              <div class="system-item">
+                <div class="icon">↗</div>
+                <div>
+                  <h3>Revenue behavior becomes visible.</h3>
+                  <p>Track the real drivers: AOV, conversion, units per transaction, repeat visits, customer flow, and coaching moments.</p>
+                </div>
+              </div>
+              <div class="system-item">
+                <div class="icon">◈</div>
+                <div>
+                  <h3>Leadership stops operating on vibes.</h3>
+                  <p>Daily and weekly review rhythms help managers coach the floor, protect standards, and make cleaner decisions.</p>
+                </div>
+              </div>
+              <div class="system-item">
+                <div class="icon">⌁</div>
+                <div>
+                  <h3>The customer experience gets repeatable.</h3>
+                  <p>Speed, trust, education, recommendation quality, and service consistency become part of the operating model.</p>
+                </div>
+              </div>
+              <div class="system-item">
+                <div class="icon">●</div>
+                <div>
+                  <h3>Growth stops feeling accidental.</h3>
+                  <p>CBI connects strategy to execution so the business can scale without losing control of the guest experience.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="trusted" class="trusted-section">
-      <div class="trusted-header">
-        <p class="section-label">Trusted Network</p>
-        <h2>Trusted by operators, media platforms, universities, and emerging brands.</h2>
-      </div>
-
-      <div class="logo-carousel">
-        <div class="logo-track">
-
-          <div class="logo-item"><img src="images/logos/jardin.png" alt="Jardin"></div>
-          <div class="logo-item"><img src="images/logos/snp.png" alt="Some Neat Place"></div>
-          <div class="logo-item"><img src="images/logos/obl.png" alt="Original Breeders League"></div>
-          <div class="logo-item"><img src="images/logos/foodbeverage.png" alt="Food and Beverage Magazine"></div>
-          <div class="logo-item"><img src="images/logos/profmagazine.png" alt="PROF the Magazine"></div>
-          <div class="logo-item"><img src="images/logos/vegascannabis.png" alt="Vegas Cannabis"></div>
-          <div class="logo-item"><img src="images/logos/curaleaf.png" alt="Curaleaf"></div>
-          <div class="logo-item"><img src="images/logos/unlv.png" alt="UNLV"></div>
-          <div class="logo-item"><img src="images/logos/kona.png" alt="Kona Coffee House"></div>
-          <div class="logo-item"><img src="images/logos/metanoia.png" alt="Metanoia Records"></div>
-          <div class="logo-item"><img src="images/logos/ucr.png" alt="UCR"></div>
-          <div class="logo-item"><img src="images/logos/abc.png" alt="ABC"></div>
-          <div class="logo-item"><img src="images/logos/mycannabis.png" alt="My Cannabis"></div>
-          <div class="logo-item"><img src="images/logos/damatequila.png" alt="Dama Tequila"></div>
-          <div class="logo-item"><img src="images/logos/nextshark.png" alt="NextShark"></div>
-          <div class="logo-item"><img src="images/logos/blackstone.png" alt="Blackstone LaunchPad"></div>
-
-          <div class="logo-item"><img src="images/logos/jardin.png" alt="Jardin"></div>
-          <div class="logo-item"><img src="images/logos/snp.png" alt="Some Neat Place"></div>
-          <div class="logo-item"><img src="images/logos/obl.png" alt="Original Breeders League"></div>
-          <div class="logo-item"><img src="images/logos/foodbeverage.png" alt="Food and Beverage Magazine"></div>
-          <div class="logo-item"><img src="images/logos/profmagazine.png" alt="PROF the Magazine"></div>
-          <div class="logo-item"><img src="images/logos/vegascannabis.png" alt="Vegas Cannabis"></div>
-          <div class="logo-item"><img src="images/logos/curaleaf.png" alt="Curaleaf"></div>
-          <div class="logo-item"><img src="images/logos/unlv.png" alt="UNLV"></div>
-          <div class="logo-item"><img src="images/logos/kona.png" alt="Kona Coffee House"></div>
-          <div class="logo-item"><img src="images/logos/metanoia.png" alt="Metanoia Records"></div>
-          <div class="logo-item"><img src="images/logos/ucr.png" alt="UCR"></div>
-          <div class="logo-item"><img src="images/logos/abc.png" alt="ABC"></div>
-          <div class="logo-item"><img src="images/logos/mycannabis.png" alt="My Cannabis"></div>
-          <div class="logo-item"><img src="images/logos/damatequila.png" alt="Dama Tequila"></div>
-          <div class="logo-item"><img src="images/logos/nextshark.png" alt="NextShark"></div>
-          <div class="logo-item"><img src="images/logos/blackstone.png" alt="Blackstone LaunchPad"></div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="impact" class="impact">
-      <div class="section-inner">
-        <p class="section-label">Impact</p>
-        <h2>Performance improves when the operation becomes visible.</h2>
-        <p class="section-copy">
-          CBI Analytics focuses on the details that shape customer experience, team performance,
-          and long-term revenue durability.
-        </p>
-
-        <div class="metrics">
-          <div class="metric">
-            <strong>01</strong>
-            <p>Identify operational friction.</p>
-          </div>
-
-          <div class="metric">
-            <strong>02</strong>
-            <p>Clarify ownership at every step.</p>
-          </div>
-
-          <div class="metric">
-            <strong>03</strong>
-            <p>Measure performance in real time.</p>
-          </div>
-
-          <div class="metric">
-            <strong>04</strong>
-            <p>Build consistency customers can feel.</p>
+      <section id="impact" class="section">
+        <div class="cta reveal">
+          <div class="kicker">Clarity in Every Decision</div>
+          <h2>Build the kind of retail operation people trust before they ever see the numbers.</h2>
+          <p>CBI Analytics helps cannabis operators tighten execution, elevate service, and create the systems that make revenue more predictable.</p>
+          <div class="hero-actions" style="justify-content: center;">
+            <a class="button primary" href="mailto:brittneytmo@gmail.com">Contact CBI Analytics →</a>
+            <a class="button secondary" href="#top">Back to Top</a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <section id="insights">
-      <div class="section-inner">
-        <p class="section-label">Insights</p>
-        <h2>Customer experience is an operating system.</h2>
-        <p class="section-copy">
-          The strongest retail brands do not simply design beautiful spaces.
-          They engineer environments where teams move with confidence, systems reduce friction,
-          communication feels intentional, and the customer journey feels seamless from beginning to end.
-        </p>
-      </div>
-    </section>
+    <footer>
+      <span>© <span id="year"></span> CBI Analytics. Built for operators who move with clarity.</span>
+      <span>Data. Insights. Growth.</span>
+    </footer>
+  </div>
 
-    <section id="contact">
-      <div class="section-inner">
-        <p class="section-label">Contact</p>
-        <h2>Need help fixing what is not working?</h2>
-        <p class="section-copy">
-          We fix the work in the workflow. Central Business Intelligence Analytics helps operators
-          understand how their business runs, identify where performance can improve, and build the
-          systems needed to scale with confidence.
-        </p>
-      </div>
-    </section>
+  <script>
+    const year = document.getElementById('year');
+    year.textContent = new Date().getFullYear();
 
-  </main>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-  <footer>
-    <p>© 2026 CBI Analytics. All rights reserved.</p>
-    <p>Data. Insights. Growth.</p>
-  </footer>
+    reveals.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 70, 420)}ms`;
+      observer.observe(item);
+    });
 
+    const dashboard = document.querySelector('.dashboard');
+    if (dashboard && window.matchMedia('(pointer: fine)').matches) {
+      dashboard.addEventListener('mousemove', (event) => {
+        const rect = dashboard.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const rotateY = ((x / rect.width) - 0.5) * 8;
+        const rotateX = ((y / rect.height) - 0.5) * -8;
+        dashboard.style.transform = `perspective(1100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      dashboard.addEventListener('mouseleave', () => {
+        dashboard.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg)';
+      });
+    }
+  </script>
 </body>
 </html>
