@@ -7,7 +7,7 @@ const counter = document.getElementById("revenueCounter");
   Sunday: $50K/day average
 */
 
-const base = 300045320;
+const base = 302045320;
 const startDate = new Date("2025-01-01T00:00:00");
 
 function getDailyRate(day) {
