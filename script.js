@@ -1,26 +1,17 @@
 const counter = document.getElementById("revenueCounter");
 
-/*
-  Revenue starts over $300M.
-  Mon–Thu: $45K/day average
-  Fri–Sat: $65K/day average
-  Sunday: $50K/day average
-*/
-
-const base = 302045320;
+const base = 300045320;
 const startDate = new Date("2025-01-01T00:00:00");
 
 function getDailyRate(day) {
-  // 0 = Sunday, 1 = Monday, 2 = Tuesday, etc.
-  if (day >= 1 && day <= 4) return 45000; // Monday–Thursday
-  if (day === 5 || day === 6) return 65000; // Friday–Saturday
-  return 50000; // Sunday
+  if (day >= 1 && day <= 4) return 45000;
+  if (day === 5 || day === 6) return 65000;
+  return 50000;
 }
 
 function calculateRevenue() {
   const now = new Date();
   let total = base;
-
   const current = new Date(startDate);
 
   while (current < now) {
@@ -35,6 +26,7 @@ function calculateRevenue() {
     const fractionOfDay = (end - current) / (1000 * 60 * 60 * 24);
 
     total += rate * fractionOfDay;
+
     current.setDate(current.getDate() + 1);
     current.setHours(0, 0, 0, 0);
   }
