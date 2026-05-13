@@ -1,33 +1,609 @@
-<!-- force rebuild -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CBI Analytics</title>
 
   <style>
-    body{
-      margin:0;
-      background:#020617;
-      color:white;
-      font-family:Arial,sans-serif;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height:100vh;
-      overflow:hidden;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #020712;
+      color: #fff;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      overflow-x: hidden;
     }
 
-    h1{
-      font-size:80px;
-      text-transform:uppercase;
-      letter-spacing:-3px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(59,130,246,.18), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.06), transparent 24%),
+        linear-gradient(180deg, #020712, #000);
+    }
+
+    .grid {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      opacity: .35;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    header {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1480px, calc(100% - 40px));
+      height: 78px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: rgba(2,7,18,.72);
+      backdrop-filter: blur(28px);
+      border: 1px solid rgba(147,197,253,.18);
+      box-shadow: 0 20px 70px rgba(0,0,0,.38);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 17px;
+      letter-spacing: 2px;
+    }
+
+    .brand span {
+      color: #9cc3ff;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a,
+    .nav-cta {
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1.8px;
+      opacity: .82;
+    }
+
+    .nav-cta {
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(147,197,253,.28);
+      background: rgba(255,255,255,.04);
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 132px 8% 90px;
+      text-align: center;
+    }
+
+    .banner {
+      width: min(1500px, 100%);
+      margin: 0 auto 58px;
+      border-radius: 36px;
+      overflow: hidden;
+      border: 1px solid rgba(147,197,253,.16);
+      box-shadow:
+        0 34px 100px rgba(0,0,0,.5),
+        0 0 120px rgba(37,99,235,.12);
+      position: relative;
+    }
+
+    .banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(2,7,18,.05), rgba(2,7,18,.55));
+    }
+
+    .banner img {
+      width: 100%;
+      display: block;
+      filter: saturate(1.05) contrast(1.04) brightness(.96);
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #93c5fd;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      max-width: 1050px;
+      margin: 0 auto;
+      font-size: clamp(48px, 7vw, 104px);
+      line-height: .93;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 28px auto 0;
+      font-size: 18px;
+      line-height: 1.65;
+      color: #dbeafe;
+    }
+
+    .actions {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .btn {
+      min-height: 50px;
+      padding: 0 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 11px;
+      font-weight: 800;
+      transition: .35s ease;
+    }
+
+    .primary {
+      color: #fff;
+      background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+      box-shadow: 0 0 46px rgba(59,130,246,.34);
+    }
+
+    .secondary {
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .ticker {
+      max-width: 900px;
+      margin: 48px auto 0;
+      padding: 34px 30px;
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(15,23,42,.72), rgba(2,6,23,.92));
+      border: 1px solid rgba(147,197,253,.24);
+      box-shadow:
+        inset 0 0 28px rgba(59,130,246,.08),
+        0 24px 70px rgba(0,0,0,.40),
+        0 0 55px rgba(37,99,235,.16);
+    }
+
+    .ticker-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #cbd5e1;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .ticker-status span {
+      width: 10px;
+      height: 10px;
+      background: #ef4444;
+      border-radius: 999px;
+      box-shadow: 0 0 24px rgba(239,68,68,.9);
+      animation: pulse 1.4s infinite;
+    }
+
+    .ticker h2 {
+      font-size: clamp(42px, 6vw, 82px);
+      letter-spacing: -3px;
+      margin: 14px 0;
+    }
+
+    .ticker p {
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .metrics {
+      width: min(1120px, 100%);
+      margin: 36px auto 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .metrics div {
+      min-height: 92px;
+      padding: 18px 16px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(15,23,42,.78), rgba(2,6,23,.92));
+      border: 1px solid rgba(147,197,253,.20);
+    }
+
+    .metrics span {
+      display: block;
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .metrics p {
+      margin-top: 7px;
+      color: #bfdbfe;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: .9px;
+    }
+
+    section {
+      padding: 120px 8%;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #93c5fd;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+
+    section h2 {
+      max-width: 980px;
+      font-size: clamp(36px, 5vw, 72px);
+      line-height: .98;
+      letter-spacing: -2px;
+      margin-bottom: 48px;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      min-height: 250px;
+      padding: 30px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(15,23,42,.82), rgba(2,6,23,.92));
+      border: 1px solid rgba(147,197,253,.16);
+      box-shadow: 0 30px 80px rgba(0,0,0,.3);
+      transition: .4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(147,197,253,.46);
+      box-shadow: 0 0 58px rgba(59,130,246,.2);
+    }
+
+    .card small {
+      color: #93c5fd;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+    }
+
+    .card h3 {
+      margin: 16px 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    .card strong {
+      display: block;
+      margin-top: 28px;
+      font-size: 26px;
+    }
+
+    .logo-rail {
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(147,197,253,.16);
+      background: rgba(255,255,255,.035);
+      padding: 28px 0;
+    }
+
+    .logo-track {
+      display: flex;
+      width: max-content;
+      gap: 60px;
+      animation: logoScroll 28s linear infinite;
+    }
+
+    .logo-track span {
+      color: #dbeafe;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      white-space: nowrap;
+      opacity: .72;
+    }
+
+    .final {
+      min-height: 70vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(250,204,21,.13), transparent 28%),
+        linear-gradient(to bottom, #020617, #000);
+    }
+
+    .final h2 {
+      max-width: 1000px;
+      font-size: clamp(38px, 6vw, 84px);
+      line-height: .95;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+      margin-bottom: 42px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: .9s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes gridMove {
+      from { background-position: 0 0; }
+      to { background-position: 72px 72px; }
+    }
+
+    @keyframes logoScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .45; transform: scale(1.45); }
+    }
+
+    @media (max-width: 980px) {
+      header {
+        position: absolute;
+        height: auto;
+        flex-direction: column;
+        border-radius: 26px;
+        gap: 14px;
+        padding: 18px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .nav-cta { display: none; }
+
+      .hero { padding-top: 190px; }
+
+      h1 {
+        font-size: 46px;
+        letter-spacing: -1px;
+      }
+
+      .metrics,
+      .grid-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .ticker h2 {
+        font-size: 38px;
+        letter-spacing: -1px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <h1>CBI Analytics</h1>
+  <div class="grid"></div>
+
+  <header>
+    <a href="#home" class="brand">
+      <img src="assets/cbi-logo.png" alt="CBI Analytics Logo">
+      <div>
+        <strong>CBI ANALYTICS</strong>
+        <span>The Operating System for Scale</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="#system">System</a>
+      <a href="#impact">Impact</a>
+      <a href="#trusted">Trusted By</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="nav-cta" href="#contact">Enter CBI Network</a>
+  </header>
+
+  <main>
+    <div id="home" class="hero reveal">
+      <div class="banner">
+        <img src="assets/cbi-network-banner.png" alt="CBI Analytics Intelligence Network">
+      </div>
+
+      <p class="eyebrow">Central Business Intelligence Analytics</p>
+
+      <h1>Build Systems.<br>Drive Revenue.<br>Create Impact.</h1>
+
+      <p class="hero-copy">
+        Operational intelligence for scalable growth. We help businesses run smoother,
+        grow faster, and keep customers coming back.
+      </p>
+
+      <div class="actions">
+        <a href="#impact" class="btn primary">Explore Impact</a>
+        <a href="#system" class="btn secondary">View CBI OS</a>
+      </div>
+
+      <div class="ticker">
+        <div class="ticker-status"><span></span> Live Revenue Intelligence</div>
+        <h2 id="revenueCounter">$300,045,320.00</h2>
+        <p>Directional impact across systems, initiatives, GTM execution, and growth opportunities.</p>
+      </div>
+
+      <div class="metrics">
+        <div><span>$300M+</span><p>Revenue Generated</p></div>
+        <div><span>100+</span><p>Team Members Led</p></div>
+        <div><span>15+</span><p>Years Leadership</p></div>
+        <div><span>50%+</span><p>Revenue Growth</p></div>
+        <div><span>Data Driven</span><p>Decisions & Systems</p></div>
+      </div>
+    </div>
+
+    <section id="system" class="reveal">
+      <p class="section-kicker">The CBI Operating System™</p>
+      <h2>A premium framework for building scalable revenue engines.</h2>
+
+      <div class="grid-cards">
+        <div class="card"><small>01</small><h3>Audit</h3><p>Assess performance, systems, workflows, and execution gaps.</p></div>
+        <div class="card"><small>02</small><h3>Diagnose</h3><p>Identify root causes and prioritize high-impact opportunities.</p></div>
+        <div class="card"><small>03</small><h3>Optimize</h3><p>Build data-driven systems that improve consistency and efficiency.</p></div>
+        <div class="card"><small>04</small><h3>Scale</h3><p>Execute growth strategies that accelerate revenue performance.</p></div>
+      </div>
+    </section>
+
+    <section id="impact" class="reveal">
+      <p class="section-kicker">Transformational Impact</p>
+      <h2>Selected work built around revenue, execution, and scale.</h2>
+
+      <div class="grid-cards">
+        <div class="card"><small>Retail Operations</small><h3>Cannabis Retail Growth Systems</h3><p>High-volume retail systems built for consistency and scale.</p><strong>+62%</strong></div>
+        <div class="card"><small>GTM Strategy</small><h3>New Market Expansion</h3><p>Execution across multiple states and high-growth markets.</p><strong>8+ Markets</strong></div>
+        <div class="card"><small>Operations</small><h3>Delivery Optimization</h3><p>Systems improving SLA adherence and customer experience.</p><strong>95%+</strong></div>
+        <div class="card"><small>Revenue Ops</small><h3>Data Driven Performance</h3><p>Executive KPI systems and operational dashboards.</p><strong>50%+</strong></div>
+      </div>
+    </section>
+
+    <section id="trusted" class="reveal">
+      <p class="section-kicker">Trusted By / Worked With</p>
+      <h2>Built across brands, media, education, and regulated markets.</h2>
+
+      <div class="logo-rail">
+        <div class="logo-track">
+          <span>JARDÍN</span><span>PR%F</span><span>UCR</span><span>UNLV</span><span>VEGAS CANNABIS</span><span>NEXTSHARK</span><span>CBI ANALYTICS</span>
+          <span>JARDÍN</span><span>PR%F</span><span>UCR</span><span>UNLV</span><span>VEGAS CANNABIS</span><span>NEXTSHARK</span><span>CBI ANALYTICS</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="final reveal">
+      <div>
+        <p class="section-kicker">Great operators solve today’s problems.</p>
+        <h2>Great leaders build systems that scale tomorrow.</h2>
+        <a href="mailto:brittney@cbianalytics.io" class="btn primary">Enter The CBI Network</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const counter = document.getElementById("revenueCounter");
+    const base = 300045320;
+    const startDate = new Date("2025-01-01T00:00:00");
+
+    function getDailyRate(day) {
+      if (day >= 1 && day <= 4) return 45000;
+      if (day === 5 || day === 6) return 65000;
+      return 50000;
+    }
+
+    function calculateRevenue() {
+      const now = new Date();
+      let total = base;
+      const current = new Date(startDate);
+
+      while (current < now) {
+        const day = current.getDay();
+        const rate = getDailyRate(day);
+
+        const nextDay = new Date(current);
+        nextDay.setDate(current.getDate() + 1);
+        nextDay.setHours(0, 0, 0, 0);
+
+        const end = nextDay > now ? now : nextDay;
+        const fractionOfDay = (end - current) / (1000 * 60 * 60 * 24);
+
+        total += rate * fractionOfDay;
+        current.setDate(current.getDate() + 1);
+        current.setHours(0, 0, 0, 0);
+      }
+
+      return total;
+    }
+
+    function updateCounter() {
+      if (!counter) return;
+      counter.textContent = calculateRevenue().toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    updateCounter();
+    setInterval(updateCounter, 1000);
+
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("active");
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
