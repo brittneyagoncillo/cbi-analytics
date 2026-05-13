@@ -1,6 +1,6 @@
 const counter = document.getElementById("revenueCounter");
 
-const base = 330045320;
+const base = 300045320;
 const startDate = new Date("2025-01-01T00:00:00");
 
 function getDailyRate(day) {
@@ -63,12 +63,47 @@ const revealElements = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-      }
+      if (entry.isIntersecting) entry.target.classList.add("active");
     });
   },
   { threshold: 0.15 }
 );
 
 revealElements.forEach(el => observer.observe(el));
+
+const mapData = {
+  "Los Angeles": {
+    title: "Culture, Media & Influence",
+    copy: "Brand positioning, content gravity, and cultural relevance built into operational systems."
+  },
+  "Las Vegas": {
+    title: "Retail, Hospitality & High-Volume Execution",
+    copy: "Systems built for fast-moving teams, revenue consistency, and premium customer experience."
+  },
+  "Austin": {
+    title: "Innovation, Startups & Technology",
+    copy: "Lean systems, scalable workflows, and technology-forward growth infrastructure."
+  },
+  "San Francisco": {
+    title: "Infrastructure, Intelligence & Systems",
+    copy: "Data-driven operations, tech-enabled execution, and precision performance architecture."
+  },
+  "New York": {
+    title: "Finance, Markets & Strategy",
+    copy: "Executive strategy, market expansion, and revenue intelligence for competitive growth."
+  }
+};
+
+const mapButtons = document.querySelectorAll(".intelligence-map button");
+const mapCity = document.getElementById("mapCity");
+const mapTitle = document.getElementById("mapTitle");
+const mapCopy = document.getElementById("mapCopy");
+
+mapButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const city = button.dataset.city;
+    mapCity.textContent = city;
+    mapTitle.textContent = mapData[city].title;
+    mapCopy.textContent = mapData[city].copy;
+  });
+});
