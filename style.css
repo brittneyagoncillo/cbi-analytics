@@ -74,3 +74,10 @@
     grid-column: span 1;
   }
 }
+.banner img,
+.banner-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.04) brightness(.96);
+}
