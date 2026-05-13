@@ -1,6 +1,6 @@
 const counter = document.getElementById("revenueCounter");
 
-const base = 300045320;
+const base = 330045320;
 const startDate = new Date("2025-01-01T00:00:00");
 
 function getDailyRate(day) {
